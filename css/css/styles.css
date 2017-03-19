@@ -4,6 +4,12 @@ body{
 	background: grey;
 }
 
+.btn{
+	border: 1px solid red;
+	color: white;
+	background: blue;
+}
+
 #first-table{
 	color: blue;
 	border: 5px;
