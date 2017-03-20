@@ -11,12 +11,14 @@ External Stylesheet
 
 Or you can also use the @import method as shown below
 
-<style type=”text/css”>@improt url(Path To stylesheet.css)</style>
+<style type=”text/css”>
 
+@import url('css/styles.css')
+
+</style>
 
 Inline Styles
-<p style=”color: #ff0000;”>Some red text</p>
-
+<p class="pclass" style="color: #ff0000;"">Some red text</p>
 
 ## Basic CSS Rules
 
@@ -92,4 +94,13 @@ body {font-family: Verdana, serif;}
 h1 {font-family: Georgia, sans-serif;}
 p {font-family: Tahoma, serif;}
 ``
+
+## Grouping Selectors
+h1, h2, p {
+    text-align: center;
+    color: red;
+}
+
+## CSS Comments
+/* This is a single-line comment */
 

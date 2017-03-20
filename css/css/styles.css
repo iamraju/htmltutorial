@@ -1,17 +1,37 @@
-body{
-	color: #000000;
 
-	background: grey;
+@import url('reset.css');
+
+.wrapper{
+	color: green;
+}
+
+.wrapper > div{
+	text-decoration: underline;
+}
+
+.wrapper div ul li{
+	color: red;
 }
 
 .btn{
 	border: 1px solid red;
-	color: white;
 	background: blue;
 }
 
+.pclass{
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.pclass.xyz{
+	text-decoration: underline;
+}
+
+#id-dd{
+	color: red;
+}
+
 #first-table{
-	color: blue;
 	border: 5px;
 	border-color: red;
 	border-style: double;
