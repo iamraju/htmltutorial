@@ -1,0 +1,14 @@
+.wrapper{
+	width: 500;
+	height: 300;
+	border: 1px red solid;
+	margin: 0;
+}
+
+.inner{
+	width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+    background: grey;
+}
