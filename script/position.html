@@ -52,29 +52,34 @@
                     <a href="#" onclick="movePageTitle()">Move Title</a>
                 <div class="box">
                     <form name="myForm">
-                        <div>
-                            <lable>Name:</lable>
+                        <div class="row">
+                            <label class="caption">Name*:</label>
                             <label><input type="text" name="name" /></label>
                         </div>
 
-                        <div>
-                        <lable>Email:</lable>
-                        <label><input type="text" name="email" /></label>
-                        </div>
-                        <div>
-                        <lable>Address:</lable>
-                        <label><input type="text" name="address" /></label>
+                        <div class="row">
+                            <label class="caption">Email*:</label>
+                            <label><input type="text" name="email" /></label>
                         </div>
 
-                        <div>
+                        <div class="row">
+                            <label class="caption">Address:</label>
+                            <label><input type="text" name="address" /></label>
+                        </div>
+
+                        <div class="row">
+                            <label class="caption">Age*:</label>
+                            <label><input type="text" name="age" /></label>
+                        </div>
+
+                        <div class="error"></div>
+
+                        <div class="success"></div>
+
+                        <div class="row">
                             <input type="button" value="Submit" name="btnSubmit" onclick="getValues()">
                         </div>
                     </form>
-
-                    <a href="#" class="show">Show Text</a>
-                    <div class="hidden">
-                        Hidden div
-                    </div>
                 </div>
                 <div>
                     <table border="1" id="mytable">
@@ -82,6 +87,7 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Address</th>
+                            <th>Age</th>
                         </tr>
                     </table>
                 </div>
@@ -95,35 +101,52 @@
 
     <script type="text/javascript">
     function getValues(){
-        var name = document.myForm.name.value;
-        var email = document.myForm.email.value;
+        var name    = document.myForm.name.value;
+        var email   = document.myForm.email.value;
         var address = document.myForm.address.value;
+        var age     = parseInt(document.myForm.age.value);
 
-        if(name == ""){
-            alert("Please enter name");
+        let validated = false;
+
+        let errorElement = document.querySelector(".error");
+        let successElement = document.querySelector(".success");
+
+        if(name == "" || email == "" || age == "" || age != NaN){
+            errorElement.innerHTML = "Please fill all the required (*) fields.";
+            successElement.innerText = "";
+        }
+        else{
+            errorElement.innerHTML = "";
+            validated = true;
         }
 
-        var myTable = document.getElementById("mytable");
-        var exitingHtml = mytable.innerHTML;
+        if(validated === true && age < 18){
+            errorElement.innerHTML = "You are not eligible. You have to be at least 18.";
+            successElement.innerText = "";
+            validated = false;
+        }
 
-        var newHtml = '<tr><td>' + name + '</td><td>' + email + '</td><td>' + address + '</td></tr>';
-        myTable.innerHTML = exitingHtml + newHtml;
-        
+        if(validated === true){
+            var myTable = document.getElementById("mytable");
+
+            var exitingHtml = mytable.innerHTML;
+
+            var newHtml = '<tr><td>' + name + '</td><td>' + email + '</td><td>' + address + '</td><td>' + age + '</td></tr>';
+
+            myTable.innerHTML = exitingHtml + newHtml;
+
+            successElement.innerText = "Successfully added.";
+
+            clearForm();
+
+        }
     }
 
-
-    var pageName = document.getElementById("pageName");
-    var currentLeft = pageName.style.left;
-
-    function modifyText(){
-        var myDiv = document.getElementById("fixedElement");
-        myDiv.style.color = "#ff0000";
-        myDiv.innerHTML = "I am modified";      
-    }
-    function movePageTitle(){
-        console.log(currentLeft);
-        // pageName.style.position = "absolute";
-        pageName.style.left = currentLeft + 10 + 'px';
+    function clearForm(){
+        document.myForm.name.value = "";
+        document.myForm.email.value = "";
+        document.myForm.address.value = "";
+        document.myForm.age.value = "";
     }
     </script>
 </body>
