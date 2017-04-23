@@ -131,8 +131,21 @@ ul li:hover {
     
     border: 1px solid blue;
     
-    margin: 10px;
-    /*padding: 20px;*/
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.box input{
+    padding: 2px;
+}
+
+.box label{
+    padding: 5px;
+    margin-top: 5px;
+}
+
+.box input[type=button]{
+    margin-top: 10px;
 }
 
 .footer {
@@ -171,4 +184,22 @@ ul li:hover {
 
 .success{
     color: green;
+}
+
+.form{
+    float: left;
+    width: 200px;
+}
+
+.result{
+    float: left;
+    margin-left: 10px;
+}
+
+.table{
+    border: 1px solid #f1f1f2;
+    width: 400px;
+}
+.table tr th{
+    border: 1px solid #f1f1f2;
 }

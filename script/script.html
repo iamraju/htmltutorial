@@ -8,11 +8,6 @@
 </head>
 
 <body>
-
-    <div class="fixed" id="fixedElement" onclick="modifyText()">
-        This is fixed element
-    </div>
-
     <div class="wrapper" id="wrapper">
         <div class="header">
             <div class="logo">
@@ -48,41 +43,50 @@
             </div>
 
             <div class="page">
-                <h1 id="pageName" class="something">Page Name</h1>
-                    <a href="#" onclick="movePageTitle()">Move Title</a>
-                <div class="box">
+                <h1 id="pageName" class="something">Employees</h1>
+                
+                <div class="form box">
                     <form name="myForm">
                         <div>
-                            <lable>Name:</lable>
+                            <label>Name:</label>
                             <label><input type="text" name="name" /></label>
                         </div>
 
                         <div>
-                        <lable>Email:</lable>
-                        <label><input type="text" name="email" /></label>
-                        </div>
-                        <div>
-                        <lable>Address:</lable>
-                        <label><input type="text" name="address" /></label>
+                            <label>Email:</label>
+                            <label><input type="text" name="email" /></label>
                         </div>
 
                         <div>
-                            <input type="button" value="Submit" name="btnSubmit" onclick="getValues()">
+                            <label>Address:</label>
+                            <label><input type="text" name="address" /></label>
+                        </div>
+
+                        <div>
+                            <label>
+                                <input type="button" value="Submit" name="btnSubmit"  id="btnSubmit">
+
+                                <input type="button" value="Remove All" name="btnRemoveAll" id="btnRemoveAll">
+                            </label>
                         </div>
                     </form>
 
-                    <a href="#" class="show">Show Text</a>
-                    <div class="hidden">
-                        Hidden div
-                    </div>
                 </div>
-                <div>
-                    <table border="1" id="mytable">
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Address</th>
-                        </tr>
+                <div class="result">
+                    <table class="table" border="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="mytable">
+                            
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -93,18 +97,7 @@
         </div>
     </div>
 
-    <div class="user-panel main">
-        <input type="text" name="name" id="name" />
-
-        <input type="text" name="login" id="login" />
-
-        <input type="checkbox" name="mycheckbox" />
-    </div>
-
-    <script type="text/javascript">
-        let navigation = document.querySelector(".navigation");
-        
-    </script>
+    <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 
 </html>
