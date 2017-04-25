@@ -1,5 +1,5 @@
 let table           = document.querySelector("#mytable");
-var btnAdd          = document.querySelector("#btnAdd");
+let btnAdd          = document.querySelector("#btnAdd");
 let btnSave         = document.querySelector("#btnSave");
 let removeAllButton = document.querySelector("#btnRemoveAll");
 
@@ -11,12 +11,14 @@ var serialNumber    = 1;
 btnSave.style.display = 'none';
 
 function Employee(){
+    this.id = null;
     this.name = null;
     this.email = null;
     this.address = null;
 
     this.addNew = function(){
         let tr = document.createElement("TR");
+
         let newRow = '<th>' + serialNumber + '</th>'+
                         '<td id="name' + serialNumber + '">' + this.name + '</td>'+
                         '<td id="email' + serialNumber + '">' + this.email + '</td>'+
@@ -25,6 +27,7 @@ function Employee(){
         tr.innerHTML = newRow;
 
         table.appendChild(tr);
+
         serialNumber++;
         this.clearForm();
     }
@@ -34,14 +37,11 @@ function Employee(){
     }
 
     this.deleteRow = function(element){
-        if(confirm("Are you sure to delete ?\nPress OK to confirm, or Cancel.")){
+        if(confirm("Are you sure to delete ?\n\nPress OK to confirm, or Cancel.")){
             var tr = element.parentElement.parentElement;
             tr.remove();
 
             // tr.parentElement.removeChild(tr);
-            
-            // tr.outerHTML = "";
-            // delete tr;
         }
 
         return false;
@@ -49,20 +49,26 @@ function Employee(){
 
     this.editRow = function(element){
         var id = element.id.substring(5);
+        form.editID.value = id;
 
         var name = document.querySelector("#name" + id).textContent;
         var email = document.querySelector("#email" + id).textContent;
         var address = document.querySelector("#address" + id).textContent;
 
-        document.myForm.name.value = name;
-        document.myForm.email.value = email;
-        document.myForm.address.value = address;
+        form.name.value = name;
+        form.email.value = email;
+        form.address.value = address;
 
         btnSave.style.display = '';
         btnAdd.style.display = 'none';
     }
 
     this.editSave = function(){
+        // save data to the table
+        let id = form.editID.value;
+        
+        document.querySelector("#name" + id).textContent = form.name.value;
+
         btnSave.style.display = 'none';
         btnAdd.style.display = '';
 
@@ -78,6 +84,7 @@ var employee = new Employee();
 
 // add event listener for edit and delete
 document.addEventListener('click', function(event){
+
     if(!event.target) return;
 
     var element = event.target;
@@ -94,6 +101,10 @@ document.addEventListener('click', function(event){
 // Remove All
 removeAllButton.onclick = function(){
     employee.removeAll();
+}
+
+btnSave.onclick = function(){
+    employee.editSave();
 }
 
 // Add new employee
