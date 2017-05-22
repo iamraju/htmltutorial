@@ -17,16 +17,32 @@ function Employee(){
     this.address = null;
 
     this.addNew = function(){
-        let tr = document.createElement("TR");
+        let tr          = document.createElement("TR");
+        let th          = document.createElement("TH");
+        th.innerText    = serialNumber;
 
-        let newRow = '<th>' + serialNumber + '</th>'+
-                        '<td id="name' + serialNumber + '">' + this.name + '</td>'+
-                        '<td id="email' + serialNumber + '">' + this.email + '</td>'+
-                        '<td id="address' + serialNumber + '">' + this.address + '</td>'+
-                        '<td><a href="javascript:;" class="edit" id="edit-' + serialNumber + '">Edit</a> | <a href="javascript:;" class="delete" id="delete-' + serialNumber + '">Delete</a></td>';
-        tr.innerHTML = newRow;
+        let tdName      = document.createElement("TD");
+        tdName.innerText = this.name;
+        tdName.id       = 'name' + serialNumber;
 
-        table.appendChild(tr);
+        let tdEmail         = document.createElement("TD");
+        tdEmail.innerText = this.email;
+        tdEmail.id = 'email' + serialNumber;
+
+        let tdAddress         = document.createElement("TD");
+        tdAddress.innerText = this.address;
+        tdAddress.id = 'address' + serialNumber;
+
+        let tdAction         = document.createElement("TD");
+        tdAction.innerHTML   = '<a href="javascript:;" class="edit" id="edit-' + serialNumber + '">Edit</a> | <a href="javascript:;" class="delete" id="delete-' + serialNumber + '">Delete</a>';
+
+        tr.appendChild(th);
+        tr.appendChild(tdName);tdEmail
+        tr.appendChild(tdEmail);
+        tr.appendChild(tdAddress);
+        tr.appendChild(tdAction);
+
+        table.appendChild(tr); 
 
         serialNumber++;
         this.clearForm();
@@ -48,6 +64,7 @@ function Employee(){
     }
 
     this.editRow = function(element){
+        // edit-2
         var id = element.id.substring(5);
         form.editID.value = id;
 
@@ -68,6 +85,8 @@ function Employee(){
         let id = form.editID.value;
         
         document.querySelector("#name" + id).textContent = form.name.value;
+        document.querySelector("#email" + id).textContent = form.email.value;
+        document.querySelector("#address" + id).textContent = form.address.value;
 
         btnSave.style.display = 'none';
         btnAdd.style.display = '';
@@ -96,6 +115,10 @@ document.addEventListener('click', function(event){
     if(element.className == "delete"){
         employee.deleteRow(element);
     }
+
+    if(element.className == 'removeItem'){
+        removeLi(element);
+    }
 });
 
 // Remove All
@@ -109,9 +132,54 @@ btnSave.onclick = function(){
 
 // Add new employee
 btnAdd.onclick = function(){ // anonymous function
+
+    if(form.name.value == ""){
+        form.name.style.border = '1px solid red';
+        let nameError = document.querySelector('#name-error');
+        nameError.style.color = 'red';
+        nameError.innerText = "Please enter some value";
+        return false;
+    }
+
     employee.name = form.name.value;
     employee.email = form.email.value;
     employee.address = form.address.value;
 
     employee.addNew();
+}
+
+function removeLi(element){
+    element.parentElement.remove();
+}
+
+var lnkAddItem = document.querySelector('#addItem');
+var ulContainer = document.querySelector('#myList')
+lnkAddItem.onclick = function(){
+    document.querySelector('LI').remove();
+
+    // let newLi = document.createElement('LI');
+    // newLi.innerHTML = 'New List <a href="#" class="removeItem"> x </a>';
+    // ulContainer.appendChild(newLi);
+
+    return false;
+}
+
+
+function MyClass(){
+    this.name = "Swastik College";
+
+    this.getName = function(){
+        return this.name;
+    }
+}
+
+form.name.onkeypress = function(){
+    console.log(this.value);
+}
+
+var obj = new MyClass();
+
+MyClass.prototype.email = "ram@gmail.com";
+MyClass.prototype.getEmail = function(){
+    return this.email;
 }

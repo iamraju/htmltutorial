@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>CSS - Position</title>
+    <title>JavaScript</title>
 
     <link rel="stylesheet" href="css/style.css">
 
@@ -50,7 +50,10 @@
                         <input type="hidden" name="editID" id="editID" value="">
                         <div>
                             <label>Name:</label>
-                            <label><input type="text" name="name" /></label>
+                            <label>
+                                <input type="text" name="name" />
+                                <lable id="name-error"></lable>
+                            </label>
                         </div>
 
                         <div>
@@ -91,6 +94,15 @@
                             
                         </tbody>
                     </table>
+                </div>
+                <div style="clear: both;">
+                    <h1>List</h1>
+                    <a href="#" id="addItem">Add Item</a>
+
+                    <ul id="myList">
+                        <li>List 1</li>
+                    </ul>
+
                 </div>
             </div>
         </div>
